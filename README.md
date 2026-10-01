@@ -1,4 +1,4 @@
-# Практическое занятие №3
+# Практическое занятие №4
 по дисциплине «Технологии индустриального программирования».
 
 # Требования
@@ -36,17 +36,15 @@ go run .
 curl -i http://localhost:8080/
 curl -i http://localhost:8080/health
 
-curl -i http://localhost:8080/tasks //Список всех задачь
+curl -i -X POST http://localhost:8080/api/tasks -H "Content-Type: application/json" -d "{\"title\":\"Выучить chi\"}" //Создание новой задачи
 
-curl -i -X POST http://localhost:8080/tasks -H "Content-Type: application/json" -d "{\"title\":\"Купить молоко\"}" //Добавить задачу
+curl -i http://localhost:8080/api/tasks //Получение всех задачь
 
-curl -i "http://localhost:8080/tasks?q=молоко" //Поиск по ключевым словам
+curl -i http://localhost:8080/api/tasks/1 //Получение задачи по индексу
 
-curl -i http://localhost:8080/tasks/1 //Поиск по индексу
+curl -i -X PUT http://localhost:8080/api/tasks/1 -H "Content-Type: application/json" -d "{\"title\":\"Выучить chi глубже\",\"done\":true}" //Изменение задачи (индекс задачи + изменение названия и статуса)
 
-curl -i -X PATCH http://localhost:8080/tasks/1 -H "Content-Type: application/json" -d "{\"done\":true}" //Пометить как выполненную
-
-curl -i -X DELETE http://localhost:8080/tasks/1 //Удаление задачи
+curl -i -X DELETE http://localhost:8080/api/tasks/2 //Удаление задачи по индексу
 
 ```
 (или другой порт, если он был изменён)
